@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="card shadow-lg border-0 rounded-3 p-4" style="max-width: 500px; width: 100%;">
+        <div class="text-center mb-3">
+            <span class="material-icons-outlined" style="font-size:64px; color:#0d6efd;">
+                login
+            </span>
+            <h3 class="mt-2">Login</h3>
+        </div>
+
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+
+
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" class="form-control @(ViewData.ModelState["UserName"]?.Errors.Count > 0 ? "is-invalid" : "")" placeholder="Ex: Roberto Silva" />
+                <span asp-validation-for="UserName" class="invalid-feedback"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control @(ViewData.ModelState["Password"]?.Errors.Count > 0 ? "is-invalid" : "")" placeholder="*********" type="password" />
+                <span asp-validation-for="Password" class="invalid-feedback"></span>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success">
+                    Entrar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

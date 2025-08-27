@@ -1,0 +1,16 @@
+﻿@model LancheListViewModel
+
+<div class="container py-5">
+    <!-- Título da categoria -->
+    <h2 class="text-center mb-5 fw-bold text-primary">@Model.CategoriaAtual</h2>
+
+    <!-- Lista de lanches com Flexbox -->
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+        @foreach (var lanche in Model.Lanches)
+        {
+            <div class="flex-fill" style="min-width: 250px; max-width: 300px;">
+                <partial name="_LanchesResumo" for="@lanche" />
+            </div>
+        }
+    </div>
+</div>

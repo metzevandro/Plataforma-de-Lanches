@@ -1,0 +1,33 @@
+﻿<div class="dropdown">
+    <a class="btn btn-light dropdown-toggle border-0 d-flex align-items-center text-dark"
+       role="button" id="dropdownMenuLink"
+       data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-icons-outlined me-1">fastfood</span>
+        Lanches
+    </a>
+
+    <ul class="dropdown-menu shadow-sm border-0" aria-labelledby="dropdownMenuLink">
+        @foreach (var categoria in Model)
+        {
+            <li>
+                <a class="dropdown-item d-flex align-items-center text-dark"
+                   asp-controller="Lanche"
+                   asp-action="List"
+                   asp-route-categoria="@categoria.Nome">
+                    <span class="material-icons-outlined me-2 text-muted" style="font-size:18px;">local_dining</span>
+                    @categoria.Nome
+                </a>
+            </li>
+        }
+        <li><hr class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item d-flex align-items-center text-dark"
+               asp-controller="Lanche"
+               asp-action="List"
+               asp-route-categoria="">
+                <span class="material-icons-outlined me-2 text-muted" style="font-size:18px;">restaurant</span>
+                Todos os Lanches
+            </a>
+        </li>
+    </ul>
+</div>

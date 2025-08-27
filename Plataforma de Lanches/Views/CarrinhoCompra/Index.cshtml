@@ -1,0 +1,93 @@
+﻿@model CarrinhoCompraViewModel
+
+<div class="container my-5">
+    <div class="checkoutForm card shadow-lg p-4 rounded-4 border-0">
+        <!-- Header -->
+        <div class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3">
+            <!-- Botão Voltar -->
+            <a class="btn btn-outline-primary d-flex align-items-center gap-1"
+               asp-controller="Lanche" asp-action="List">
+                <span class="material-icons-outlined">arrow_back</span>
+                Voltar
+            </a>
+
+            <!-- Título centralizado -->
+            <h3 class="mb-0 fw-bold text-primary text-center flex-grow-1">Meu Carrinho</h3>
+
+            <!-- Espaço vazio para balancear -->
+            <div style="width: 80px;"></div>
+        </div>
+
+        @if (Model.CarrinhoCompra.CarrinhoCompraItems.Count == 0)
+        {
+            <!-- Carrinho vazio -->
+            <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%; gap: 1rem;">
+                <span class="material-icons-outlined text-muted" style="font-size:48px;">remove_shopping_cart</span>
+                <h5 class="fw-semibold text-muted">Seu carrinho está vazio</h5>
+                <a class="btn btn-primary d-flex align-items-center gap-2"
+                   asp-controller="Lanche" asp-action="List">
+                    <span class="material-icons-outlined">fastfood</span>
+                    Ver Lanches
+                </a>
+            </div>
+
+
+        }
+        else
+        {
+            <!-- Tabela de Itens -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table text-dark">
+                        <tr>
+                            <th class="text-center">Quantidade</th>
+                            <th>Produto</th>
+                            <th class="text-end">Preço unitário</th>
+                            <th class="text-end">Subtotal</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItems)
+                        {
+                            <tr>
+                                <td class="text-center fw-semibold">@item.Quantidade</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span>@item.Lanche.Nome</span>
+                                    </div>
+                                </td>
+                                <td class="text-end">@item.Lanche.Preco.ToString("c")</td>
+                                <td class="text-end fw-semibold">@((item.Quantidade * item.Lanche.Preco).ToString("c"))</td>
+                                <td class="text-center">
+                                    <a asp-controller="CarrinhoCompra"
+                                       asp-action="RemoverItemDoCarrinho"
+                                       asp-route-lancheId="@item.Lanche.Id"
+                                       class="btn btn-sm btn-link text-danger p-0"
+                                       title="Remover este item">
+                                        <span class="material-icons-outlined" style="font-size:20px;">delete</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="table-light">
+                        <tr>
+                            <td colspan="3" class="text-end fw-bold">Total:</td>
+                            <td class="text-end fw-bold text-success fs-5">@Model.CarrinhoCompraTotal.ToString("c")</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Ações -->
+            <div class="d-flex justify-content-end mt-4 flex-wrap gap-2">
+                <a class="btn btn-success d-flex align-items-center gap-2"
+                   asp-controller="Pedido" asp-action="Checkout">
+                    Finalizar pedido
+                </a>
+            </div>
+        }
+    </div>
+</div>

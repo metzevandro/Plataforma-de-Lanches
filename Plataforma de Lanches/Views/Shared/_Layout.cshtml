@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Plataforma de Lanches</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Plataforma_de_Lanches.styles.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto; /* ocupa o máximo possível */
+            display: flex;
+            justify-content: center; /* centraliza verticalmente */
+            align-items: center;
+            padding-bottom: 1rem;
+            flex-direction: column;
+        }
+
+        footer {
+            flex-shrink: 0; /* garante que fique no final */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom">
+            <div class="container d-flex align-items-center justify-content-between">
+
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-primary d-flex align-items-center me-3"
+                   asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="material-icons-outlined me-1">fastfood</span>
+                    Plataforma de Lanches
+                </a>
+
+                <!-- Busca e Links Esquerda -->
+                <div class="d-flex align-items-center flex-grow-1 gap-3 ms-3">
+                    <!-- Busca -->
+                    <form class="d-flex flex-grow-1" asp-controller="Lanche" asp-action="Search" method="get">
+                        <input type="text" class="form-control form-control-sm w-100"
+                               placeholder="Buscar..." name="searchString" value="@ViewData["searchString"]">
+                    </form>
+
+                    <!-- Links adicionais -->
+                    <a class="nav-link fw-medium" asp-area="" asp-controller="Contato" asp-action="Index">
+                        Contato
+                    </a>
+                </div>
+
+                <!-- Direita: Categoria, Carrinho e Login -->
+                <div class="d-flex align-items-center gap-3">
+                    @await Component.InvokeAsync("CategoriaMenu")
+                    @await Component.InvokeAsync("CarrinhoCompraResumo")
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+
+                <!-- Botão Mobile -->
+                <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </div>
+        </nav>
+    </header>
+
+
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+
+    <partial name="_Footer" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

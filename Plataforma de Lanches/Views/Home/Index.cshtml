@@ -1,0 +1,27 @@
+﻿@model HomeViewModel
+
+<!-- Título de boas-vindas -->
+<div class="text-center my-5">
+    <h1 class="display-4 fw-bold text-primary">Bem-vindo!</h1>
+    <p class="lead text-muted">Descubra nossos lanches mais deliciosos e favoritos dos clientes</p>
+</div>
+
+<!-- Carousel -->
+<div class="container mb-5">
+    <div class="shadow rounded overflow-hidden">
+        <partial name="_Carousel" />
+    </div>
+</div>
+
+<!-- Lanches Preferidos -->
+<div class="container my-5">
+    <h2 class="text-center mb-4 fw-bold text-dark">Lanches Preferidos</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+        @foreach (var lanche in Model.LanchesPreferidos)
+        {
+            <div class="col d-flex">
+                <partial name="_LanchesResumo" for="@lanche" />
+            </div>
+        }
+    </div>
+</div>

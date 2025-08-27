@@ -1,0 +1,17 @@
+﻿@model CarrinhoCompraViewModel
+
+<a asp-controller="CarrinhoCompra"
+   asp-action="Index"
+   class="btn border-0 position-relative d-flex align-items-center justify-content-center text-dark"
+   style="background-color: transparent; transition: color 0.3s ease-in-out;">
+
+    <span class="material-icons-outlined fs-4">shopping_cart</span>
+
+    @if (Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
+    {
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            @Model.CarrinhoCompra.CarrinhoCompraItems.Count
+            <span class="visually-hidden">itens no carrinho</span>
+        </span>
+    }
+</a>
