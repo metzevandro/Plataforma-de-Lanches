@@ -1,76 +1,94 @@
 ﻿@model Plataforma_de_Lanches.Models.Lanche
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Produto";
 }
-<h3>Editar Produto</h3>
-<hr />
-<form asp-action="Edit" role="form">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="Nome" class="control-label"></label>
-        <input asp-for="Nome" class="form-control" />
-        <span asp-validation-for="Nome" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DescricaoCurta" class="control-label"></label>
-        <textarea asp-for="DescricaoCurta" class="form-control"></textarea>
-        <span asp-validation-for="DescricaoCurta" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DescricaoDetalhada" class="control-label"></label>
-        <textarea asp-for="DescricaoDetalhada" class="form-control"></textarea>
-        <span asp-validation-for="DescricaoDetalhada" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Preco" class="control-label"></label>
-        <input asp-for="Preco" class="form-control" />
-        <span asp-validation-for="Preco" class="text-danger"></span>
+
+<div class="container my-4">
+    <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="material-icons-outlined fs-3 text-warning">edit</span>
+        <h2 class="fw-bold mb-0">@ViewData["Title"]</h2>
     </div>
 
-    <div class="row">
-        <div class="form-group col-md-6">
-            <label asp-for="ImagemUrl" class="control-label"></label>
-            <input asp-for="ImagemUrl" class="form-control" />
-            <span asp-validation-for="ImagemUrl" class="text-danger"></span>
-        </div>
-        <div class="form-group col-md-6">
-            <img src="@Model.ImagemUrl" />
-        </div>
-     </div>
+    <div class="card shadow-sm rounded-3">
+        <div class="card-body">
+            <form asp-action="Edit" role="form" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="Id" />
 
-    <div class="form-group">
-        <label asp-for="ImagemThumbnailUrl" class="control-label"></label>
-        <input asp-for="ImagemThumbnailUrl" class="form-control" />
-        <span asp-validation-for="ImagemThumbnailUrl" class="text-danger"></span>
-    </div>
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label fw-semibold"></label>
+                    <input asp-for="Nome" class="form-control" placeholder="Digite o nome do lanche" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
 
-    <div class="row">
-        <div class="form-group col-sm-4">
-            <label class="control-label">Marcar como Preferido?</label>
-            <br />
-            <label class="form-check-label" style="padding-left: 20px">
-                <input class="form-check-input" asp-for="IsLanchePreferido" /> @Html.DisplayNameFor(model => model.IsLanchePreferido)
-            </label>
-        </div>
-        <div class="form-group col-sm-4">
-            <label class="control-label">Marcar como em Estoque?</label>
-            <br />
-            <label class="form-check-label" style="padding-left: 20px">
-                <input class="form-check-input" asp-for="EmEstoque" /> @Html.DisplayNameFor(model => model.EmEstoque)
-            </label>
-        </div>
-        <div class="form-group col-sm-4">
-            <label asp-for="CategoriaId" class="control-label"></label>
-            <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
-            <span asp-validation-for="CategoriaId" class="text-danger"></span>
-        </div>
-    </div>
+                <div class="mb-3">
+                    <label asp-for="DescricaoCurta" class="form-label fw-semibold"></label>
+                    <textarea asp-for="DescricaoCurta" class="form-control" placeholder="Descrição curta"></textarea>
+                    <span asp-validation-for="DescricaoCurta" class="text-danger"></span>
+                </div>
 
-    <hr />
-    <div class="form-group">
-        <input type="submit" value="Salvar" class="btn btn-primary" />
-        <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
+                <div class="mb-3">
+                    <label asp-for="DescricaoDetalhada" class="form-label fw-semibold"></label>
+                    <textarea asp-for="DescricaoDetalhada" class="form-control" placeholder="Descrição detalhada"></textarea>
+                    <span asp-validation-for="DescricaoDetalhada" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Preco" class="form-label fw-semibold"></label>
+                    <input asp-for="Preco" class="form-control" placeholder="Preço do lanche" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="ImagemUrl" class="form-label fw-semibold"></label>
+                        <input asp-for="ImagemUrl" class="form-control" placeholder="URL da imagem" />
+                        <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center align-items-center">
+                        <img src="@Model.ImagemUrl" class="img-fluid rounded" alt="Imagem do lanche" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImagemThumbnailUrl" class="form-label fw-semibold"></label>
+                    <input asp-for="ImagemThumbnailUrl" class="form-control" placeholder="URL do thumbnail" />
+                    <span asp-validation-for="ImagemThumbnailUrl" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-4">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="IsLanchePreferido" />
+                            <label class="form-check-label">@Html.DisplayNameFor(model => model.IsLanchePreferido)</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="EmEstoque" />
+                            <label class="form-check-label">@Html.DisplayNameFor(model => model.EmEstoque)</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label asp-for="CategoriaId" class="form-label fw-semibold"></label>
+                        <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
+                        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="d-flex justify-content-between mt-3">
+                    <a asp-action="Index" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                        <span class="material-icons-outlined">arrow_back</span>
+                        Retornar
+                    </a>
+                    <button type="submit" class="btn btn-primary d-flex align-items-center gap-2">
+                        <span class="material-icons-outlined">save</span>
+                        Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>

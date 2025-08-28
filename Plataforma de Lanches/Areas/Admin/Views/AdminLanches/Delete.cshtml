@@ -1,71 +1,65 @@
 ﻿@model Plataforma_de_Lanches.Models.Lanche
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Deletar Produto";
 }
-<h3>Deseja Deletar este Produto ?</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.DescricaoCurta)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.DescricaoCurta)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.DescricaoDetalhada)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.DescricaoDetalhada)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Preco)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.ImagemUrl)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.ImagemUrl)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.ImagemThumbnailUrl)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.ImagemThumbnailUrl)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.IsLanchePreferido)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.IsLanchePreferido)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.EmEstoque)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.EmEstoque)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Categoria.Nome)
-        </dd class>
-    </dl>
-    <hr />
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
-    </form>
+
+<div class="container my-4">
+    <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="material-icons-outlined fs-3 text-danger">delete_forever</span>
+        <h2 class="fw-bold mb-0">Deseja Deletar este Produto?</h2>
+    </div>
+
+    <div class="card shadow-sm rounded-3">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 fw-semibold">Nome</dt>
+                <dd class="col-sm-9">@Model.Nome</dd>
+
+                <dt class="col-sm-3 fw-semibold">Descrição Curta</dt>
+                <dd class="col-sm-9">@Model.DescricaoCurta</dd>
+
+                <dt class="col-sm-3 fw-semibold">Descrição Detalhada</dt>
+                <dd class="col-sm-9">@Model.DescricaoDetalhada</dd>
+
+                <dt class="col-sm-3 fw-semibold">Preço</dt>
+                <dd class="col-sm-9">@Model.Preco</dd>
+
+                <dt class="col-sm-3 fw-semibold">Imagem</dt>
+                <dd class="col-sm-9">
+                    <img src="@Model.ImagemUrl" class="img-fluid rounded mb-2" alt="Imagem do Lanche" />
+                </dd>
+
+                <dt class="col-sm-3 fw-semibold">Thumbnail</dt>
+                <dd class="col-sm-9">
+                    <img src="@Model.ImagemThumbnailUrl" class="img-fluid rounded" alt="Thumbnail do Lanche" />
+                </dd>
+
+                <dt class="col-sm-3 fw-semibold">Preferido?</dt>
+                <dd class="col-sm-9">@Model.IsLanchePreferido</dd>
+
+                <dt class="col-sm-3 fw-semibold">Em Estoque?</dt>
+                <dd class="col-sm-9">@Model.EmEstoque</dd>
+
+                <dt class="col-sm-3 fw-semibold">Categoria</dt>
+                <dd class="col-sm-9">@Model.Categoria?.Nome</dd>
+            </dl>
+
+            <hr />
+
+            <div class="d-flex justify-content-between mt-3">
+                <a asp-action="Index" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <span class="material-icons-outlined">arrow_back</span>
+                    Retornar
+                </a>
+                <form asp-action="Delete" class="m-0">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger d-flex align-items-center gap-2">
+                        <span class="material-icons-outlined">delete</span>
+                        Deletar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

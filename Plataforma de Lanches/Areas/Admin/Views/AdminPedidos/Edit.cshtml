@@ -1,78 +1,136 @@
 ﻿@model Plataforma_de_Lanches.Models.Pedido
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Pedido";
 }
-<h3>Editar Pedido</h3><h4>(Não inclui itens do pedido)</h4>
-<hr />
-<form asp-action="Edit" role="form">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="PedidoId" />
-    <div class="row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Nome" class="control-label"></label>
-            <input asp-for="Nome" class="form-control" />
-            <span asp-validation-for="Nome" class="text-danger"></span>
-        </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Sobrenome" class="control-label"></label>
-            <input asp-for="Sobrenome" class="form-control" />
-            <span asp-validation-for="Sobrenome" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Endereco1" class="control-label"></label>
-        <input asp-for="Endereco1" class="form-control" />
-        <span asp-validation-for="Endereco1" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Endereco2" class="control-label"></label>
-        <input asp-for="Endereco2" class="form-control" />
-        <span asp-validation-for="Endereco2" class="text-danger"></span>
-    </div>
-    <div class="row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Cep" class="control-label"></label>
-            <input asp-for="Cep" class="form-control" />
-            <span asp-validation-for="Cep" class="text-danger"></span>
-        </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Estado" class="control-label"></label>
-            <input asp-for="Estado" class="form-control" />
-            <span asp-validation-for="Estado" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Cidade" class="control-label"></label>
-        <input asp-for="Cidade" class="form-control" />
-        <span asp-validation-for="Cidade" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Telefone" class="control-label"></label>
-        <input asp-for="Telefone" class="form-control" />
-        <span asp-validation-for="Telefone" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="row">
-        <div class="form-group col-sm-6">
-            <label asp-for="PedidoEnviado" class="control-label"></label>
-            <input asp-for="PedidoEnviado" class="form-control" />
-            <span asp-validation-for="PedidoEnviado" class="text-danger"></span>
-        </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="PedidoEntregueEm" class="control-label"></label>
-            <input asp-for="PedidoEntregueEm" class="form-control" />
-            <span asp-validation-for="PedidoEntregueEm" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-       <input type="submit" value="Salvar" class="btn btn-primary" />
-       <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
-    </div>
-</form>
 
+<div class="container my-4">
+    <!-- Cabeçalho -->
+    <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="material-icons-outlined fs-3 text-primary">edit</span>
+        <h3 class="mb-0">Editar Pedido</h3>
+        <small class="text-muted">(Não inclui itens do pedido)</small>
+    </div>
+    <hr />
 
+    <form asp-action="Edit" role="form" class="needs-validation" novalidate>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input type="hidden" asp-for="PedidoId" />
+
+        <!-- Nome e Sobrenome -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="Nome" class="form-label d-flex align-items-center gap-1">
+                    <span class="material-icons-outlined text-secondary">person</span>
+                    Nome
+                </label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Sobrenome" class="form-label d-flex align-items-center gap-1">
+                    <span class="material-icons-outlined text-secondary">person_outline</span>
+                    Sobrenome
+                </label>
+                <input asp-for="Sobrenome" class="form-control" />
+                <span asp-validation-for="Sobrenome" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Endereços -->
+        <div class="mb-3">
+            <label asp-for="Endereco1" class="form-label d-flex align-items-center gap-1">
+                <span class="material-icons-outlined text-secondary">home</span>
+                Endereço 1
+            </label>
+            <input asp-for="Endereco1" class="form-control" />
+            <span asp-validation-for="Endereco1" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Endereco2" class="form-label d-flex align-items-center gap-1">
+                <span class="material-icons-outlined text-secondary">home_work</span>
+                Endereço 2
+            </label>
+            <input asp-for="Endereco2" class="form-control" />
+            <span asp-validation-for="Endereco2" class="text-danger"></span>
+        </div>
+
+        <!-- CEP e Estado -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="Cep" class="form-label d-flex align-items-center gap-1">
+                    <span class="material-icons-outlined text-secondary">markunread_mailbox</span>
+                    CEP
+                </label>
+                <input asp-for="Cep" class="form-control" />
+                <span asp-validation-for="Cep" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Estado" class="form-label d-flex align-items-center gap-1">
+                    <span class="material-icons-outlined text-secondary">map</span>
+                    Estado
+                </label>
+                <input asp-for="Estado" class="form-control" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Cidade -->
+        <div class="mb-3">
+            <label asp-for="Cidade" class="form-label d-flex align-items-center gap-1">
+                <span class="material-icons-outlined text-secondary">location_city</span>
+                Cidade
+            </label>
+            <input asp-for="Cidade" class="form-control" />
+            <span asp-validation-for="Cidade" class="text-danger"></span>
+        </div>
+
+        <!-- Telefone e Email -->
+        <div class="mb-3">
+            <label asp-for="Telefone" class="form-label d-flex align-items-center gap-1">
+                <span class="material-icons-outlined text-secondary">phone</span>
+                Telefone
+            </label>
+            <input asp-for="Telefone" class="form-control" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label d-flex align-items-center gap-1">
+                <span class="material-icons-outlined text-secondary">email</span>
+                Email
+            </label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <!-- Pedido Enviado e Entregue -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label asp-for="PedidoEnviado" class="form-label d-flex align-items-center gap-1">
+                    <span class="material-icons-outlined text-secondary">local_shipping</span>
+                    Pedido Enviado
+                </label>
+                <input asp-for="PedidoEnviado" class="form-control" />
+                <span asp-validation-for="PedidoEnviado" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PedidoEntregueEm" class="form-label d-flex align-items-center gap-1">
+                    <span class="material-icons-outlined text-secondary">done_all</span>
+                    Pedido Entregue
+                </label>
+                <input asp-for="PedidoEntregueEm" class="form-control" />
+                <span asp-validation-for="PedidoEntregueEm" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Botões -->
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary d-flex align-items-center gap-1">
+                <span class="material-icons-outlined">save</span> Salvar
+            </button>
+            <a asp-action="Index" class="btn btn-outline-info d-flex align-items-center gap-1">
+                <span class="material-icons-outlined">arrow_back</span> Retornar
+            </a>
+        </div>
+    </form>
+</div>

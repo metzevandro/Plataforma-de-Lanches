@@ -1,10 +1,20 @@
-﻿<br />
-<img src="~/images/adminarea.jpg" alt="Àrea de Administração"  class="marginTop1"/>
-<div class="container">
-    <div class="jumbotron">
-        <p>
-           <h2>Esta é a área do Administrador</h2>
-        </p>
+﻿<div class="container my-5">
+
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-center bg-light p-4 rounded-3 shadow-sm mb-4 gap-3">
+        <span class="material-icons-outlined text-primary" style="font-size: 48px;">
+            admin_panel_settings
+        </span>
+        <h2 class="mb-0">Esta é a área do Administrador</h2>
     </div>
-    <a asp-area="" asp-controller="Home" asp-action="Index">Volta a Home Page</a>
+
+    <!-- Link de retorno -->
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-outline-primary d-flex align-items-center gap-2"
+           asp-area="" asp-controller="Home" asp-action="Index">
+            <span class="material-icons-outlined">arrow_back</span>
+            Voltar à Home Page
+        </a>
+    </div>
+
 </div>

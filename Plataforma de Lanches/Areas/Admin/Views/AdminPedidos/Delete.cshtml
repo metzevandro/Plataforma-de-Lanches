@@ -1,84 +1,71 @@
 ﻿@model Plataforma_de_Lanches.Models.Pedido
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Excluir Pedido";
 }
-<h2>Deseja deletar este pedido ?</h2>
-<br />
-<h3><strong>Atenção !!! Ao deletar o pedido seus itens serão excluídos</strong></h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Sobrenome)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Sobrenome)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Endereco1)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Endereco1)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Endereco2)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Endereco2)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Cep)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Cep)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.PedidoEnviado)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.PedidoEnviado)
-        </dd>
-        <dt class = "col-sm-3">
-            @Html.DisplayNameFor(model => model.PedidoEntregueEm)
-        </dt>
-        <dd class = "col-sm-9">
-            @Html.DisplayFor(model => model.PedidoEntregueEm)
-        </dd>
-    </dl>
-    <form asp-action="Delete">
+
+<div class="container my-4">
+    <!-- Cabeçalho -->
+    <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="material-icons-outlined fs-3 text-danger">warning</span>
+        <h2 class="fw-bold mb-0">Deseja deletar este pedido?</h2>
+    </div>
+
+    <!-- Aviso -->
+    <div class="alert alert-warning shadow-sm rounded-3" role="alert">
+        <strong>Atenção!</strong> Ao deletar o pedido, todos os itens associados serão excluídos permanentemente.
+    </div>
+
+    <!-- Card com detalhes do pedido -->
+    <div class="card shadow-sm rounded-3 mb-3">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 fw-semibold">Nome</dt>
+                <dd class="col-sm-9">@Model.Nome</dd>
+
+                <dt class="col-sm-3 fw-semibold">Sobrenome</dt>
+                <dd class="col-sm-9">@Model.Sobrenome</dd>
+
+                <dt class="col-sm-3 fw-semibold">Endereço 1</dt>
+                <dd class="col-sm-9">@Model.Endereco1</dd>
+
+                <dt class="col-sm-3 fw-semibold">Endereço 2</dt>
+                <dd class="col-sm-9">@Model.Endereco2</dd>
+
+                <dt class="col-sm-3 fw-semibold">CEP</dt>
+                <dd class="col-sm-9">@Model.Cep</dd>
+
+                <dt class="col-sm-3 fw-semibold">Estado</dt>
+                <dd class="col-sm-9">@Model.Estado</dd>
+
+                <dt class="col-sm-3 fw-semibold">Cidade</dt>
+                <dd class="col-sm-9">@Model.Cidade</dd>
+
+                <dt class="col-sm-3 fw-semibold">Telefone</dt>
+                <dd class="col-sm-9">@Model.Telefone</dd>
+
+                <dt class="col-sm-3 fw-semibold">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3 fw-semibold">Pedido Enviado</dt>
+                <dd class="col-sm-9">@Model.PedidoEnviado</dd>
+
+                <dt class="col-sm-3 fw-semibold">Pedido Entregue</dt>
+                <dd class="col-sm-9">@Model.PedidoEntregueEm</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Formulário de exclusão -->
+    <form asp-action="Delete" class="d-flex gap-2">
         <input type="hidden" asp-for="PedidoId" />
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
+        <button type="submit" class="btn btn-danger d-flex align-items-center gap-1">
+            <span class="material-icons-outlined">delete</span>
+            Deletar
+        </button>
+        <a asp-action="Index" class="btn btn-outline-info d-flex align-items-center gap-1">
+            <span class="material-icons-outlined">arrow_back</span>
+            Retornar
+        </a>
     </form>
 </div>

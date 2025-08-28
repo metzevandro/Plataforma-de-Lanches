@@ -1,48 +1,111 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Admin</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1rem;
+            flex-direction: column;
+        }
+
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a>
-                <div class="navbar-collapse collapse d-sm-inline-flex">
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminLanches" asp-action="Index">Produtos</a>
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminCategorias" asp-action="Index">Categorias</a>
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminPedidos" asp-action="Index">Pedidos</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm border-bottom">
+            <div class="container d-flex align-items-center justify-content-between">
 
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminRelatorioVendas" asp-action="Index">Relatório de Vendas</a>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gráficos de Vendas
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="AdminGrafico" asp-action="Index">Vendas Anual</a>
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="AdminGrafico" asp-action="VendasMensal" asp-route-dias="30">Vendas Mensais</a>
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="AdminGrafico" asp-action="VendasSemanal" asp-route-dias="7">Vendas Semanais</a>
-                        </div>
-                    </div>
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminImagens" asp-action="Index">Gerenciar Imagens</a>
+                <!-- Logo/Admin -->
+                <a class="navbar-brand fw-bold text-light d-flex align-items-center me-3"
+                   asp-area="Admin" asp-controller="Admin" asp-action="Index">
+                    <span class="material-icons-outlined me-1">admin_panel_settings</span>
+                    Administração
+                </a>
+
+                <!-- Menu Links -->
+                <div class="collapse navbar-collapse" id="navbarNavAdmin">
+                    <ul class="navbar-nav me-auto d-flex align-items-center gap-3">
+                        <li class="nav-item">
+                            <a class="nav-link text-light d-flex align-items-center" asp-area="Admin" asp-controller="AdminLanches" asp-action="Index">
+                                <span class="material-icons-outlined me-1">fastfood</span> Produtos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light d-flex align-items-center" asp-area="Admin" asp-controller="AdminCategorias" asp-action="Index">
+                                <span class="material-icons-outlined me-1">category</span> Categorias
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light d-flex align-items-center" asp-area="Admin" asp-controller="AdminPedidos" asp-action="Index">
+                                <span class="material-icons-outlined me-1">shopping_cart</span> Pedidos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light d-flex align-items-center" asp-area="Admin" asp-controller="AdminRelatorioVendas" asp-action="Index">
+                                <span class="material-icons-outlined me-1">analytics</span> Relatório de Vendas
+                            </a>
+                        </li>
+                        <!-- Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="material-icons-outlined me-1">bar_chart</span> Gráficos de Vendas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGrafico" asp-action="Index">Vendas Anual</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGrafico" asp-action="VendasMensal" asp-route-dias="30">Vendas Mensais</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGrafico" asp-action="VendasSemanal" asp-route-dias="7">Vendas Semanais</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light d-flex align-items-center" asp-area="Admin" asp-controller="AdminImagens" asp-action="Index">
+                                <span class="material-icons-outlined me-1">image</span> Gerenciar Imagens
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+
+                <!-- Botão Mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAdmin"
+                        aria-controls="navbarNavAdmin" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+
     <footer class="border-top footer text-muted">
-        <div class="container">
-            <p><a target="_blank" href="http://www.macoratti.net">&copy; 2021 - Macoratti.net</a></p>
+        <div class="container text-center py-3">
+            <p><a target="_blank" href="http://www.macoratti.net">&copy; 2025 - Administração Plataforma</a></p>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

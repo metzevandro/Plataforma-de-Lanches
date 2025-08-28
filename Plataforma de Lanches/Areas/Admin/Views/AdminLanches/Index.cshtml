@@ -1,82 +1,78 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<Plataforma_de_Lanches.Models.Lanche>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lanches";
 }
-<h3>Lanches</h3>
 
-<form method="get" class="form-inline">
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold d-flex align-items-center gap-2">
+            <span class="material-icons-outlined fs-3 text-primary">fastfood</span>
+            Lanches
+        </h2>
+        <a asp-action="Create" class="btn btn-primary d-flex align-items-center gap-2">
+            <span class="material-icons-outlined">add_circle</span>
+            Criar Lanche
+        </a>
+    </div>
 
-    <input name="filter" class="form-control" placeholder="filtro"
-           value="@Model.RouteValue["Filter"]" />
+    <form method="get" class="row g-2 mb-3">
+        <div class="col-auto">
+            <input name="filter" class="form-control" placeholder="Filtrar por nome" value="@Model.RouteValue["Filter"]" />
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-secondary d-flex align-items-center gap-2">
+                <span class="material-icons-outlined">search</span>
+            </button>
+        </div>
+    </form>
 
-    <button type="submit" class="btn btn-info"> Procurar</button>
-</form>
+    <p>Total de Lanches: <strong>@Model.TotalRecordCount</strong></p>
 
-Total de Lanches : @Model.TotalRecordCount
-<div>
-    <vc:pager paging-list="@Model"></vc:pager>
-</div>
-
-<p>
-    <a asp-action="Create">Criar Lanche</a>
-</p>
-<div class="row">
-    <div class="col-md-10">
-        <table class="table">
-            <thead>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nome)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DescricaoCurta)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Preco)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsLanchePreferido)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.EmEstoque)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Categoria)
-                    </th>
-                    <th></th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.DescricaoCurta)</th>
+                    <th>@Html.DisplayNameFor(model => model.Preco)</th>
+                    <th>@Html.DisplayNameFor(model => model.IsLanchePreferido)</th>
+                    <th>@Html.DisplayNameFor(model => model.EmEstoque)</th>
+                    <th>@Html.DisplayNameFor(model => model.Categoria)</th>
+                    <th class="text-center" style="width: 180px;">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DescricaoCurta)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Preco)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsLanchePreferido)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmEstoque)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Categoria.Nome)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edita</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Deleta</a>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DescricaoCurta)</td>
+                        <td>R$ @Html.DisplayFor(modelItem => item.Preco)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IsLanchePreferido)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EmEstoque)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Categoria.Nome)</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning d-flex align-items-center gap-1">
+                                    <span class="material-icons-outlined">edit</span> 
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-secondary text-white d-flex align-items-center gap-1">
+                                    <span class="material-icons-outlined">info</span> 
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-flex align-items-center gap-1">
+                                    <span class="material-icons-outlined">delete</span> 
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+    </div>
+
+    <!-- Paginação -->
+    <div class="d-flex justify-content-center mt-3">
+        <vc:pager paging-list="@Model" page-link-css-class="page-link" page-item-css-class="page-item"></vc:pager>
     </div>
 </div>

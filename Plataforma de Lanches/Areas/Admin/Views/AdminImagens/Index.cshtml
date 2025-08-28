@@ -1,49 +1,48 @@
 ﻿<br />
-<h4><strong>Gerenciar Imagens</strong></h4>
+<h4 class="fw-bold"><strong>Gerenciar Imagens</strong></h4>
 <br />
-<table border="0" width="100%">
-    <tr>
-        <td>
-            <form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="UploadFiles">
-                <img src="~/images/upload2.png" width="200" height="150" />
-                <hr />
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <p><b>Selecione um ou mais arquivos para enviar :</b></p>
-                        <p>(Arquivos com o mesmo nome serão sobrescritos)</p>
-                        <input type="file" name="files" multiple class="button btn-outline-primary" />
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <input type="submit" value="Enviar Arquivo(s)" class="button btn-outline-primary" />
-                    </div>
-                </div>
-            </form>
-        </td>
-        <td>
-            <form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="GetImagens">
-                <img src="~/images/visualizar1.jpg" width="200" height="200" />
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <p><strong>Visualizar Imagens na pasta do servidor :</strong></p>
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <input type="submit" value="Visualizar Arquivos no servidor" class="button btn-outline-warning" />
-                    </div>
-                </div>
-            </form>
-        </td>
-    </tr>
-</table>
-<div class="container">
-    @if (ViewData["Deletado"] != null)
-    {
-        <li>@ViewData["Deletado"]</li>
-    }
+
+<div class="row g-4">
+
+    <!-- Formulário Upload -->
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body d-flex flex-column align-items-center">
+                <span class="material-icons-outlined fs-1 text-primary mb-2">upload</span>
+                <h5 class="card-title">Enviar Arquivos</h5>
+                <p class="text-center mb-2"><b>Selecione um ou mais arquivos para enviar :</b></p>
+                <p class="text-center text-muted">(Arquivos com o mesmo nome serão sobrescritos)</p>
+                <form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="UploadFiles" class="w-100 d-flex flex-column align-items-center gap-2">
+                    <input type="file" name="files" multiple class="form-control" />
+                    <button type="submit" class="btn btn-outline-primary w-50 mt-2">Enviar Arquivo(s)</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulário Visualizar -->
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body d-flex flex-column align-items-center">
+                <span class="material-icons-outlined fs-1 text-warning mb-2">image_search</span>
+                <h5 class="card-title">Visualizar Imagens</h5>
+                <p class="text-center mb-2"><strong>Visualizar imagens na pasta do servidor:</strong></p>
+                <form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="GetImagens" class="w-100 d-flex flex-column align-items-center gap-2">
+                    <button type="submit" class="btn btn-outline-warning w-75 mt-2">Visualizar Arquivos no servidor</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<!-- Mensagem de deletado -->
+<div class="container mt-3">
+    @if (ViewData["Deletado"] != null)
+    {
+        <div class="alert alert-success d-flex align-items-center gap-2">
+            <span class="material-icons-outlined">check_circle</span>
+            <span>@ViewData["Deletado"]</span>
+        </div>
+    }
+</div>
